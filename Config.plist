@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>Oxford</string>
+	
+	<key>icon</key>
+	<string>iconify:simple-icons:oxford</string>
+	
+	<key>description</key>
+	<string>Look up words in Oxford Learner's Dictionaries (lowercase)</string>
+	
+	<key>actions</key>
+	<array>
+		<dict>
+			<key>title</key>
+			<string>Oxford</string>
+			
+			<key>applescript</key>
+			<string>
+			set selectedText to "{popclip text}"
+			set lowerText to do shell script "echo " & quoted form of selectedText & " | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z-]//g'"
+			set oxfordURL to "https://www.oxfordlearnersdictionaries.com/definition/english/" & lowerText
+			do shell script "open " & quoted form of oxfordURL
+			</string>
+			
+			<key>requirements</key>
+			<array>
+				<string>text</string>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>
